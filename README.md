@@ -69,3 +69,60 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # IntegratedProject-R-M
+
+<br />
+
+---
+
+### **👀 ¡COMPROBEMOS NUESTRO TRABAJO!**
+
+Ahora comprobaremos que todo funciona correctamente. Para esto:
+
+1. Abre dos terminales. En una deberás levantar tu proyecto del lado Front-End, y en la otra levantar tu proyecto en el lado Back-End.
+
+2. Una vez que todo esté arriba, intenta utilizar tu aplicación. Trae personajes e ingresa a sus detalles para chequear que no haya ningún error.
+
+> [**NOTA**]: solo podrás buscar a los personajes con id **1**, **2**, **3**, **4** y **5**, ya que estos son los que tienes guardados en tu archivo **`data.js`**.
+
+</br >
+
+<img src="./img/example.gif" alt="" />
+
+npm install axios
+npm i express
+
+VARIABLES DE ENTORNO:
+para usar .env
+   - crear el archivo .env
+      PASSWORD='password'
+   - instalar dotenv: npm i dotenv
+   - en el archivo donde se va a usar:
+      Ej en users.js:
+      require("dotenv").config();
+      const { PASSWORD } = process.env;
+      module.exports = [{ email: "ejemplo@gmail.com", password: PASSWORD }];
+
+      TESTING
+      Instala las siguientes dependencias en el package.json de tu servidor:
+
+jest
+supertest
+
+npm install --save-dev jest supertest (para que se instale como dependencia)
+si quiero desinstalar: npm uninstall jest supertest
+Además, dentro del package.json deberás agregar el siguiente script:
+
+   "test": "jest --detectOpenHandles --coverage"
+
+
+
+
+PARA AUTENTIFICACION: JWT BCRYPT PASSPORT JS AUTH0
+
+
+Para este error:
+warning: in the working copy of 'Server/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+ejecuto:
+   git config --global core.autocrlf false
+
+    it("Si no encuentra un personaje para borrar, debe devolver todos los personajes", async () => {

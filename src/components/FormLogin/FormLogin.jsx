@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions";
 import { validate } from "../../validation.js";
-import styles from "./Form.module.css";
+import styles from "./FormLogin.module.css";
 
-export default function Contact(props) {
-  // const { EMAIL_DEFAULT, PASSWORD_DEFAULT } = props;
+export default function FormLogin() {
+  const dispatch = useDispatch();
   const EMAIL_DEFAULT = "ejemplo@gmail.com";
   const PASSWORD_DEFAULT = "1Password";
 
@@ -37,13 +39,6 @@ export default function Contact(props) {
     const { name, value } = event.target;
     setUserData({ ...userData, [name]: value });
     setErrors(validate({ ...userData, [name]: value }));
-    // setErrors(validate({ ...inputs, [event.target.name]: event.target.value }));
-    // setInputsOk(
-    //   errors.email === "" &&
-    //     errors.password === "" &&
-    //     userData.email !== "" &&
-    //     userData.password !== ""
-    // );
   };
 
   useEffect(() => {
@@ -57,23 +52,9 @@ export default function Contact(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // if (Object.keys(errors).length) {
-    // if (!userData.email || !userData.password) {
-    //   alert("Debe llenar todos los campos");
-    // } else {
-    if (props.login(userData)) {
-      setUserData({ email: "", password: "" });
-      setErrors({ email: "", password: "" });
-    }
+    dispatch(loginUser(userData));
   };
-
-  // const login = (event) => {
-  //   const { name, value } = event.target;
-  //   setUserData({ ...userData, [name]: value });
-  //   setErrors(validate({ ...userData, [name]: value }));
-  //   // setErrors(validate({ ...inputs, [event.target.name]: event.target.value }));
-  // };
-
+  
   return (
     <div>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -81,7 +62,7 @@ export default function Contact(props) {
           <img
             src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-portal-shoes-white-clothing-zavvi-23.png"
             alt=""
-          />
+            />
           {/* <img src="https://wallpaperaccess.com/full/831749.png" alt="" /> */}
         </div>
         <div>
@@ -94,7 +75,7 @@ export default function Contact(props) {
             placeholder="Email..."
             type="text"
             onChange={handleChange}
-          />
+            />
           <p className={errors.email && styles.danger}>{errors.email}</p>
           {/* <label htmlFor='password'>Password:</label><br /> */}
           <div className={styles.campo}>
@@ -105,28 +86,28 @@ export default function Contact(props) {
               placeholder="Password..."
               type={shownPwd ? "text" : "password"}
               onChange={handleChange}
-            />
+              />
             <span onClick={switchShownPwd}>
               {shownPwd ? (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="rgba(12, 39, 148, 0.712)"
-                  height={"1.3rem"}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="rgba(12, 39, 148, 0.712)"
+                height={"1.3rem"}
                 >
                   <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
                   <path
                     fillRule="evenodd"
                     d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
                     clipRule="evenodd"
-                  />
+                    />
                 </svg>
               ) : (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="rgba(12, 39, 148, 0.712)"
-                  height={"1.3rem"}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="rgba(12, 39, 148, 0.712)"
+                height={"1.3rem"}
                 >
                   <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.676 12.553a11.249 11.249 0 01-2.631 4.31l-3.099-3.099a5.25 5.25 0 00-6.71-6.71L7.759 4.577a11.217 11.217 0 014.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113z" />
                   <path d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0115.75 12zM12.53 15.713l-4.243-4.244a3.75 3.75 0 004.243 4.243z" />
@@ -148,9 +129,9 @@ export default function Contact(props) {
                 type="checkbox"
                 id="checkDefault"
                 // value={false}
-
+                
                 onClick={handleClickDefaultInputs}
-              />
+                />
               Email y Password de prueba
             </label>
           </div>
@@ -159,7 +140,7 @@ export default function Contact(props) {
               type="submit"
               className={styles.buttonBack}
               disabled={!inputsOk}
-            >
+              >
               Enviar
             </button>
           </div>
@@ -168,3 +149,10 @@ export default function Contact(props) {
     </div>
   );
 }
+
+// const login = (event) => {
+//   const { name, value } = event.target;
+//   setUserData({ ...userData, [name]: value });
+//   setErrors(validate({ ...userData, [name]: value }));
+//   // setErrors(validate({ ...inputs, [event.target.name]: event.target.value }));
+// };
