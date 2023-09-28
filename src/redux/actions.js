@@ -114,6 +114,7 @@ export const loginUser = (user) => {
           payload: id,
         });
       } 
+      if (!data) window.alert(`Error: No hay datos `);
       // const res = await axios(endpoint);
       // return res.status === 200
       //   ?  dispatch({ type: LOGIN, payload: res.data.access })
