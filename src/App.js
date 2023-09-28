@@ -14,7 +14,7 @@ import Nav from "./components/Nav/Nav.jsx";
 import { getFavorites } from "./redux/actions";
 
 // axios.defaults.baseURL = "http://localhost:3001/"; //para el deploy
-axios.defaults.baseURL = 'ep-odd-salad-28553891.us-east-2.aws.neon.tech/';
+axios.defaults.baseURL = 'https://rickmorty-backend-k4l1-dev.fl0.io/';
 
 function App() {
   const location = useLocation();
