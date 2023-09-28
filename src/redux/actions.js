@@ -9,6 +9,7 @@ import {
   CLOSE_CARD,
   LOGIN,
   LOGOUT,
+  ERROR,
 } from "./action-types";
 
 export const searchCharacters = (id) => async (dispatch) => {
@@ -18,7 +19,7 @@ export const searchCharacters = (id) => async (dispatch) => {
     const response = await axios.get(`${URL_API}/${id}`);
     const data = response.data;
     if (data.name) {
-      data.id= parseInt(data.id);
+      data.id = parseInt(data.id);
       await dispatch({
         type: SEARCH_CHARACTERS,
         payload: data,
@@ -40,7 +41,8 @@ export const addFavorite = (char, idUser) => {
         payload: response.data,
       });
     } catch (error) {
-      return dispatch({ type: "ERROR", payload: error });
+      // return dispatch({ type: ERROR, payload: error.message });
+      window.alert(error.message);
     }
   };
 };
@@ -56,7 +58,8 @@ export const removeFavorite = (id, idUser) => {
         payload: data,
       });
     } catch (error) {
-      return dispatch({ type: "ERROR", payload: error });
+      // return dispatch({ type: ERROR, payload: error.message });
+      window.alert(error.message);
     }
   };
 };
@@ -72,7 +75,8 @@ export const getFavorites = (idUser) => {
         payload: data,
       });
     } catch (error) {
-      return dispatch({ type: "ERROR", payload: error });
+      // return dispatch({ type: ERROR, payload: error.message });
+      window.alert(error.message);
     }
   };
 };
@@ -109,15 +113,20 @@ export const loginUser = (user) => {
           type: LOGIN,
           payload: id,
         });
-      }
+      } 
+      // const res = await axios(endpoint);
+      // return res.status === 200
+      //   ?  dispatch({ type: LOGIN, payload: res.data.access })
+      //   :  dispatch({ type: ERROR, payload: res.data.message });
     } catch (error) {
-      return dispatch({ type: "ERROR", payload: error });
+      window.alert(error.message);
+      // return dispatch({ type: ERROR, payload: error.message });
     }
   };
 };
 
 export const logoutUser = () => {
-  return { type: LOGOUT }
+  return { type: LOGOUT };
 };
 
 // //MODIFICADO CUANDO AGREGUE async await

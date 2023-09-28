@@ -8,3 +8,5 @@ export const ORDER = "ORDER";
 export const RESET = "RESET";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+export const ERROR = "ERROR";
+

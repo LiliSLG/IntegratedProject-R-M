@@ -8,6 +8,7 @@ import {
   CLOSE_CARD,
   LOGIN,
   LOGOUT,
+  ERROR
 } from "./action-types";
 
 const initialState = {
@@ -125,6 +126,11 @@ const FavReducer = (state = initialState, { type, payload }) => {
         allCharacters: [...filtered],
       };
     }
+    case ERROR:
+      return {
+        ...state,
+        error: payload,
+      };
     default:
       return { ...state };
   }
