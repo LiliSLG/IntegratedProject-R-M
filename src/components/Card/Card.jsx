@@ -33,10 +33,7 @@ function Card(props) {
       removeFavorite(id, idUser);
     } else {
       setIsFav(true);
-      addFavorite(
-        { id, name, status, species, gender, origin, image },
-        idUser
-      );
+      addFavorite({ id, name, status, species, gender, origin, image }, idUser);
     }
   };
 
@@ -80,11 +77,11 @@ function Card(props) {
       </div>
       <Link to={`/details/${id}`} className={styles.link}>
         <div
-          className={
-            status === "Alive"
-              ? styles.imageContainerLive
-              : styles.imageContainerDead
-          }
+          className={styles.imageContainer}
+          // className={status === "Alive"
+          //     ? styles.imageContainerLive
+          //     : styles.imageContainerDead
+          // }
         >
           <img className={styles.cardImage} src={image} alt={name} />
         </div>
