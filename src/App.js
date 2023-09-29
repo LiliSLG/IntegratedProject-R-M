@@ -22,8 +22,8 @@ import { getFavorites } from "./redux/actions";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 //LO MODIFICO SEGUN ESTE TRABAJANDO EN MI COMPU O DEPLOY
-axios.defaults.baseURL = "http://localhost:3001/";
-// axios.defaults.baseURL = 'https://rickmorty-backend-k4l1-dev.fl0.io/';
+// axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = 'https://rickmorty-backend-k4l1-dev.fl0.io/';
 
 function App() {
   const location = useLocation();
