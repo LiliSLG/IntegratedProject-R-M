@@ -2,13 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./About.module.css";
 
-
-
 export default function About() {
   const navigate = useNavigate();
   const backToHome = () => {
-    navigate("/home")
-  }
+    navigate("/home");
+  };
   return (
     /* girar carta */
     // <div class={styleAbout.carta_box}>
@@ -26,8 +24,9 @@ export default function About() {
         <button onClick={backToHome}>X</button>
       </div>
       <div>
-        <h4>Acerca de esta aplicacion</h4>
-        <img src="https://wallpaperaccess.com/full/831749.png" alt="" />
+        <h2>Acerca de esta aplicacion</h2>
+        <h4>En construccion</h4>
+        {/* <img src="https://wallpaperaccess.com/full/831749.png" alt="" resizeMode="cover"/> */}
       </div>
     </div>
   );
@@ -37,4 +36,3 @@ export default function About() {
 /* background-image:url("https://www.pixelstalk.net/wp-content/uploads/images6/Abstract-Rick-And-Morty-Wallpaper-4K.jpg") ;    */
 /* background-image:url("https://wallpaperaccess.com/full/831749.png") ; */
 /* background-image:url("https://www.xtrafondos.com/descargar.php?id=6534&resolucion=6000x3000") ; */
-   

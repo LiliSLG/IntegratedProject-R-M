@@ -15,8 +15,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-
   background-color: rgba(12, 39, 148, 0.712);
   /* margin: 2em, 0em, 2em, 0em; */
   /* height: 300px; */
@@ -25,6 +23,14 @@
   padding: 20px;
   margin: 30px;
   /* color: #f6f4e6; */
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(229, 220, 220);
 }
 
 .form img {
@@ -82,7 +88,6 @@
   outline: none;
 }
 
-
 .campo {
   position: relative;
   display: grid;
@@ -124,7 +129,7 @@ input {
 
 .checkbox label {
   width: 130px;
-  color: #f6f4e6; 
+  color: #f6f4e6;
   font-size: 12px;
   font-weight: lighter;
 }
@@ -133,7 +138,6 @@ input {
   width: 20px;
   height: 13px;
 }
-
 
 .buttonCointainer {
   display: flex;

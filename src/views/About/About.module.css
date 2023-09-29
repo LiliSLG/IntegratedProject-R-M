@@ -5,6 +5,7 @@ a:active {
 }
 
 .container {
+  backgroundImage: "https://wallpaperaccess.com/full/831749.png";       
   display: flex;
   flex-direction: column;
   /* justify-content: center; */

@@ -1,8 +1,8 @@
 .card{
     /* width: 18vw;
     height: 10vh; */
-    width: 150px;
-    height:220px;
+    width: 180px;
+    height:250px;
     /* height: fit-content; */
     background-color: rgba(12, 39, 148, 0.146);    
     display: flex;
@@ -24,7 +24,7 @@
 }
 
 .wrapperText{
-    width: 140px;
+    width: 160px;
     height: 100px;
     /* height: fit-content; */
     display: flex;
@@ -65,8 +65,8 @@
 }
 
 .imageContainerLive{    
-    height: 100px;
-	width: 100px;
+    height: 140px;
+	width: 140px;
 	border-radius: 50%;
     margin-top: 5px;
     display: flex;

@@ -8,12 +8,13 @@ import {
   CLOSE_CARD,
   LOGIN,
   LOGOUT,
-  ERROR
+  ERROR,
 } from "./action-types";
 
 const initialState = {
   idUser: 0,
   access: false,
+  auth: false,
   myFavorites: [],
   allCharacters: [],
   myFavoritesFilterAux: [], //Uso este arreglo para el filtrado de favoritos
@@ -115,6 +116,7 @@ const FavReducer = (state = initialState, { type, payload }) => {
         access: false,
         myFavorites: [],
         allCharacters: [],
+        myFavoritesFilterAux: [],
       };
     }
     case CLOSE_CARD: {

@@ -1,8 +1,14 @@
-import React from "react";
-import { useEffect } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
 import "./App.css";
 import Home from "./views/Home/Home";
 import About from "./views/About/About";
@@ -11,10 +17,13 @@ import NotFound_404 from "./views/NotFound_404/NotFound_404";
 import Favorites from "./views/Favorites/Favorites.jsx";
 import Login from "./views/Login/Login";
 import Nav from "./components/Nav/Nav.jsx";
+import Register from "./views/Register/Register";
 import { getFavorites } from "./redux/actions";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
-// axios.defaults.baseURL = "http://localhost:3001/"; //para el deploy
-axios.defaults.baseURL = 'https://rickmorty-backend-k4l1-dev.fl0.io/';
+//LO MODIFICO SEGUN ESTE TRABAJANDO EN MI COMPU O DEPLOY
+axios.defaults.baseURL = "http://localhost:3001/";
+// axios.defaults.baseURL = 'https://rickmorty-backend-k4l1-dev.fl0.io/';
 
 function App() {
   const location = useLocation();
@@ -24,18 +33,18 @@ function App() {
   // const [characters, setCharacters] = useState([]);//saco el estado local
   // const [access, setAccess] = useState(false); //saco el estado local
   const idUser = useSelector((state) => state.idUser);
-  const access = useSelector((state) => state.access);
+  const isLoggedIn = useSelector((state) => state.access);
 
   // useEffect para cargar los datos iniciales del usuario
   useEffect(() => {
-    access && dispatch(getFavorites(idUser));
-    access && navigate("/home");
+    isLoggedIn && dispatch(getFavorites(idUser));
+    isLoggedIn && navigate("/home");
   }, [idUser]);
 
   // useEffect para validar el acceso al sistema ej:si el usuario ingresa manualmente /home, redirigira a la página de inicio ("locahost:3000" ó "/" que es donde esta el form del login)
-  useEffect(() => {
-    !access && navigate("/");
-  }, [access, navigate]);
+  // useEffect(() => {
+  //   !isLoggedIn && navigate("/");
+  // }, [isLoggedIn, navigate]);
 
   return (
     <div className="App">
@@ -48,18 +57,23 @@ function App() {
         />
       </div>
       {/* {location.pathname !== "/" && <Nav onSearch={onSearch} logOut={logOut} />} */}
-      {location.pathname !== "/" && <Nav />}
+      {location.pathname !== "/" && location.pathname !== "/register" && (
+        <Nav />
+      )}
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<PrivateRoute Component={Home} />} />
         <Route
-          path="/home"
-          // element={<Home characters={characters} onClose={onClose} />}
-          element={<Home />}
+          path="/favorites"
+          element={<PrivateRoute Component={Favorites} />}
         />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/details/:detailId" element={<Details />} />
+        <Route path="/about" element={<PrivateRoute Component={About} />} />
+        <Route
+          path="//details/:detailId"
+          element={<PrivateRoute Component={Details} />}
+        />
         <Route path="*" element={<NotFound_404 />} />
         {/* <Route path=':error' element={<NotFound_404 />}/> */}
       </Routes>

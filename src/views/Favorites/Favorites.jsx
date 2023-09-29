@@ -32,6 +32,7 @@ function Favorites({ myFavorites }) {
       <div className={styles.menu}>
         <div>
           <div className={styles.radioContainer}>
+          <p className={styles.name}> Ordenar: </p>
             <div className={styles.radioTileGroup} onChange={handleOrder}>
               <div className={styles.inputContainer}>
                 <input
@@ -69,6 +70,7 @@ function Favorites({ myFavorites }) {
         </div>
         <div>
           <div className={styles.radioContainer}>
+          <p className={styles.name}> Filtrar por género: </p>
             <div className={styles.radioTileGroup} onChange={handleFilter}>
               <div className={styles.inputContainer}>
                 <input id="All" type="radio" name="filter" value="All" />

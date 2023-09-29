@@ -82,6 +82,7 @@ export const getFavorites = (idUser) => {
 };
 
 export const filterCards = (gender) => {
+
   return {
     type: FILTER,
     payload: gender,
@@ -113,12 +114,38 @@ export const loginUser = (user) => {
           type: LOGIN,
           payload: id,
         });
-      } 
+      }
       if (!data) window.alert(`Error: No hay datos `);
       // const res = await axios(endpoint);
       // return res.status === 200
       //   ?  dispatch({ type: LOGIN, payload: res.data.access })
       //   :  dispatch({ type: ERROR, payload: res.data.message });
+    } catch (error) {
+      window.alert(error.message);
+      // return dispatch({ type: ERROR, payload: error.message });
+    }
+  };
+};
+
+export const registerUser = (user) => {
+  const { fullName, email, password } = user;
+  const endpoint = `rickandmorty/register/?fullName=${fullName}&email=${email}&password=${password}`;
+  return async (dispatch) => {
+    try {
+      const data = {
+        newUser: { fullName: fullName, email: email, password: password },
+      }; // para poder hacer el destructuring en el server
+      const response = await axios.post(endpoint, data); //lo que cargo en el payload
+
+      const res = await axios.post(endpoint, data);
+      const { access, id } = res.data;
+      if (res.status === 200) {
+        return dispatch({
+          //logueo al user
+          type: LOGIN,
+          payload: true,
+        });
+      }
     } catch (error) {
       window.alert(error.message);
       // return dispatch({ type: ERROR, payload: error.message });
