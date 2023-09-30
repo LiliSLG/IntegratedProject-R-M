@@ -7,11 +7,10 @@ import { validateNewUser } from "../../validation.js";
 import { registerUser } from "../../redux/actions";
 // import { register } from '../../actions/auth';
 
-
 const Register = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.access);
-  
+
   const [newUserData, setNewUserData] = React.useState({
     fullName: "",
     email: "",
@@ -58,9 +57,11 @@ const Register = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const user = dispatch(registerUser(newUserData)).then(() => {
-      return <Navigate to="/" />;
-    });
+    const user = dispatch(registerUser(newUserData));
+    return <Navigate to="/" />;
+    // .then(() => {
+    //   return <Navigate to="/" />;
+    // });
     // setUser(user);
   };
 

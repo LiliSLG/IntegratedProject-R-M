@@ -82,7 +82,6 @@ export const getFavorites = (idUser) => {
 };
 
 export const filterCards = (gender) => {
-
   return {
     type: FILTER,
     payload: gender,
@@ -136,16 +135,17 @@ export const registerUser = (user) => {
         newUser: { fullName: fullName, email: email, password: password },
       }; // para poder hacer el destructuring en el server
       const response = await axios.post(endpoint, data); //lo que cargo en el payload
-
-      const res = await axios.post(endpoint, data);
-      const { access, id } = res.data;
-      if (res.status === 200) {
-        return dispatch({
-          //logueo al user
-          type: LOGIN,
-          payload: true,
-        });
+      const { access, id } = response.data;
+      if (response.status === 200) {
+        window.alert("Usuario creado");
       }
+      // if (access) {
+      //   return dispatch({
+      //     //logueo al user
+      //     type: LOGIN,
+      //     payload: id,
+      //   });
+      // }
     } catch (error) {
       window.alert(error.message);
       // return dispatch({ type: ERROR, payload: error.message });
